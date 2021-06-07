@@ -1,0 +1,38 @@
+<div style="width:inherit;" [ngClass]="{'gc-p-left': columnAlign === 'left','gc-p-right': columnAlign === 'right',
+'gc-header-text': !(textMatIcon || fontIcon),'gc-mat-icon-head': (textMatIcon || fontIcon)}">
+
+
+    <!-- quitado translate -->
+    <span [ngClass]="'gc-column-menu'" *ngIf="!(textMatIcon || fontIcon) && column.title && !title && type==='default' ">{{column.title}}</span>
+    <span class="gc-column-menu" *ngIf="!(textMatIcon || fontIcon) &&  title && type==='default'">{{title}}</span>
+
+
+    <!-- <span class="gc-factor-header" *ngIf="!textMatIcon &&  multiTitle && type==='factorHeader'">
+        <span class="gc-column-menu gc-factor-nombre">{{multiTitle["nombre"]}}
+            <li class="gc-column-menu k-icon k-i-sort-asc-sm primary-A700-color" [ngClass]="{'gc-order-maticon': (textMatIcon || fontIcon)}" *ngIf="isOrdered(column.field, 'asc')"></li>
+            <li class="gc-column-menu k-icon k-i-sort-desc-sm primary-A700-color " [ngClass]="{'gc-order-maticon': (textMatIcon || fontIcon)}" *ngIf="isOrdered(column.field, 'desc')"></li>
+            <span class="gc-column-menu gc-text-order primary-A700-color" [ngClass]="{'gc-text-maticon': (textMatIcon || fontIcon)}">{{getOrder(column.field) !== 0 ? getOrder(column.field): "" }}</span>
+            <kendo-grid-column-menu [column]="column" [sort]="gridCurrentState.sort" [ngClass]="{'gc-defaultmenu-hidden': true}" [sortable]="{mode: 'multiple', allowUnsort: true}" [filter]="gridCurrentState.filter" [settings]="{  sort: true ,filter: true, columnChooser: false  }">
+            </kendo-grid-column-menu>
+        </span>
+        <span class="gc-column-menu  gc-factor-ponderacion"> {{ multiTitle["ponderacion"] !== 100 ? intlService.formatNumber(multiTitle["ponderacion"],'n2' ) : 100}}%</span>
+    </span> -->
+
+    <mat-icon class="gc-column-menu" *ngIf="textMatIcon">{{textMatIcon}}</mat-icon>
+    <mat-icon *ngIf="fontIcon" class="gc-column-menu header-icon-xsm" [fontSet]="fontSet" [fontIcon]="fontIcon">
+    </mat-icon>
+    <!-- <span *ngIf="!(multiTitle && type==='factorHeader')">
+        <li class="gc-column-menu k-icon k-i-sort-asc-sm primary-A700-color" [ngClass]="{'gc-order-maticon': (textMatIcon || fontIcon)}" *ngIf="isOrdered(column.field, 'asc')"></li>
+        <li class="gc-column-menu k-icon k-i-sort-desc-sm primary-A700-color " [ngClass]="{'gc-order-maticon': (textMatIcon || fontIcon)}" *ngIf="isOrdered(column.field, 'desc')"></li>
+        <span class="gc-column-menu gc-text-order primary-A700-color" [ngClass]="{'gc-text-maticon': (textMatIcon || fontIcon)}">{{getOrder(column.field) !== 0 ? getOrder(column.field): "" }}</span>
+        <kendo-grid-column-menu [column]="column" [sort]="gridCurrentState.sort" [ngClass]="{'gc-defaultmenu-hidden': true}" [sortable]="{mode: 'multiple', allowUnsort: true}" [filter]="gridCurrentState.filter" [settings]="{  sort: true ,filter: true, columnChooser: false  }">
+        </kendo-grid-column-menu>
+    </span> -->
+
+
+
+
+
+
+
+</div>

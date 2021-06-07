@@ -1,0 +1,75 @@
+@font-face {
+  font-family: "epsilon-icon-font";
+  src: url("../assets/fonts/epsilon-icon-font.eot?c9f1ef");
+  src: url("../assets/fonts/epsilon-icon-font.eot?c9f1ef#iefix") format("embedded-opentype"),
+    url("../assets/fonts/epsilon-icon-font.ttf?c9f1ef") format("truetype"),
+    url("../assets/fonts/epsilon-icon-font.woff?c9f1ef") format("woff"),
+    url("../assets/fonts/epsilon-icon-font.svg?c9f1ef#epsilon-icon-font") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "epsilon-icon-font" !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.gc-menu-item-icon {
+  font-size: 21px;
+  color: rgba(0, 0, 0, 0.54);
+  margin-right: 19px;
+}
+
+.icon-info-circle:before {
+  content: "\e90d";
+}
+.icon-add_circle_outline:before {
+  content: "\e90b";
+}
+.icon-versions:before {
+  content: "\e90c";
+}
+.icon-place:before {
+  content: "\e90a";
+}
+.icon-desktop:before {
+  content: "\e906";
+}
+.icon-desktop-CE:before {
+  content: "\e907";
+}
+.icon-pin-1:before {
+  content: "\e900";
+}
+.icon-pin-2:before {
+  content: "\e901";
+}
+.icon-location:before {
+  content: "\e902";
+}
+.icon-location-history:before {
+  content: "\e903";
+}
+.icon-location-unknown:before {
+  content: "\e909";
+}
+.icon-tag-solid:before {
+  content: "\e904";
+}
+.icon-tag-line:before {
+  content: "\e905";
+}
+.icon-tag-CE:before {
+  content: "\e908";
+}

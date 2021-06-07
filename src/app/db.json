@@ -1,0 +1,28 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": {
+        "name": "name",
+        "surname": "surname"
+      }
+    },
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    },
+    {
+      "name": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "json-serverrrrrr",
+      "author": {
+        "name": "name",
+        "surname": "surname"
+      }
+    }
+  ]
+}

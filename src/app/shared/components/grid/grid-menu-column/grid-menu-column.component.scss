@@ -1,0 +1,66 @@
+$filtered-color: #141414;
+.gc-defaultmenu-hidden {
+  visibility: hidden;
+}
+
+.gc-text-order {
+  font-size: x-small;
+  color: $filtered-color !important;
+}
+
+.gc-mat-icon-head {
+  padding-left: 11px;
+  color: black;
+  cursor: pointer;
+  //margin-top: 5px;
+  margin-left: 3px;
+}
+.gc-header-text {
+  position: relative;
+  width: 100%;
+  color: #000;
+  font-size: 14px;
+  cursor: pointer;
+  top: -3px;
+}
+.gc-p-left {
+  text-align: left;
+  padding-left: 5px;
+}
+.gc-p-right {
+  text-align: right;
+}
+.gc-order-maticon {
+  padding-bottom: 11px;
+}
+.gc-text-maticon {
+  position: relative;
+  top: -5px;
+}
+
+.gc-factor-header {
+  cursor: pointer;
+  top: 5px;
+}
+.gc-factor-nombre {
+  white-space: nowrap;
+  width: 65%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+.gc-factor-ponderacion {
+  width: 35%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+.header-icon-xsm {
+  font-size: 22px;
+  line-height: 24px;
+  height: 26px;
+  width: 26px;
+  vertical-align: middle;
+  padding-left: 7px;
+}
