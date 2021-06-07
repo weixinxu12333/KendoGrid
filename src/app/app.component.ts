@@ -9,7 +9,6 @@ import { PuestosService } from './services/puestosService';
 import { PuestoTipo } from './models/puesto-tipo';
 import { SafeStyle, DomSanitizer } from '@angular/platform-browser';
 import { ExcelExportData } from '@progress/kendo-angular-excel-export';
-import { APIService } from './services/api.service';
 
 @Component({
   selector: 'app-root',
