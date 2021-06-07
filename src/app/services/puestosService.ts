@@ -8,13 +8,11 @@ import { PuestoTipo } from '../models/puesto-tipo';
 })
 export class PuestosService {
 
-    id = '14869';
-
     constructor(
         private http: HttpClient,
     ) { }
 
-    // get(): Observable<PuestoTipo[]> {
+    // getAll(): Observable<PuestoTipo[]> {
     //     return this.http.get<PuestoTipo[]>(`https://localhost:5001/api/organizacion/organigrama/420/version-puesto?fechaFiltro=2021-05-27`);
     // }
 
@@ -22,7 +20,19 @@ export class PuestosService {
         return this.http.get<PuestoTipo[]>(`http://localhost:3000/posts`);
     }
 
-    getById(): Observable<PuestoTipo[]> {
-        return this.http.get<PuestoTipo[]>(`http://localhost:3000/posts/` + this.id);
+    getById(id: number): Observable<PuestoTipo[]> {
+        return this.http.get<PuestoTipo[]>(`http://localhost:3000/posts/${id}`);
+    }
+
+    create(puesto: PuestoTipo): Observable<PuestoTipo> {
+        return this.http.post<PuestoTipo>(`http://localhost:3000/posts`, { ...puesto, id: null });
+    }
+
+    update(puesto: PuestoTipo): Observable<PuestoTipo> {
+        return this.http.put<PuestoTipo>(`http://localhost:3000/posts/${puesto.id}`, puesto);
+    }
+
+    delete(puesto: PuestoTipo): Observable<PuestoTipo> {
+        return this.http.delete<PuestoTipo>(`http://localhost:3000/posts/${puesto.id}`);
     }
 }
