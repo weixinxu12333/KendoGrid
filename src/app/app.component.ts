@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { DataBindingDirective, DataStateChangeEvent, PageChangeEvent } from '@progress/kendo-angular-grid';
+import { DataBindingDirective, DataStateChangeEvent, GridComponent, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { filter } from 'rxjs/operators';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 import { SortDescriptor, orderBy, process, State } from '@progress/kendo-data-query';
@@ -9,6 +9,7 @@ import { PuestosService } from './services/puestosService';
 import { PuestoTipo } from './models/puesto-tipo';
 import { SafeStyle, DomSanitizer } from '@angular/platform-browser';
 import { ExcelExportData } from '@progress/kendo-angular-excel-export';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -45,10 +46,26 @@ export class AppComponent {
     take: 15,
   };
 
+  // CRUD row
+  public editedRowIndex: number;
+  public formGroup: FormGroup;
+  // public isNew = false;
+  @ViewChild(GridComponent, { static: true }) private grid: GridComponent;
+  public gridCurrentState: State = this.state;
+
+
+  // public get isInEditingMode(): boolean {
+  //   return this.editedRowIndex !== undefined || this.isNew;
+  // }
+
+  // public isTouchScreen: boolean;
+
   constructor(
     private oauthService: OAuthService,
     private puestosService: PuestosService,
-    private sanitizer: DomSanitizer) {
+    private sanitizer: DomSanitizer,
+    private formBuilder: FormBuilder
+  ) {
     this.oauthService.configure(authCodeFlowConfig);
     this.oauthService.loadDiscoveryDocumentAndLogin().then(_ => this.initLoad());
 
@@ -59,6 +76,7 @@ export class AppComponent {
       });
 
     this.allData = this.allData.bind(this);
+    this.createFormGroup = this.createFormGroup.bind(this);
   }
 
   private initLoad(): void {
@@ -141,6 +159,58 @@ export class AppComponent {
     return result;
   }
 
+  // CRUD
+  public createFormGroup(dataItem: PuestoTipo): FormGroup {
+    return this.formGroup = this.formBuilder.group({
+      'id': new FormControl(),
+      'nombre': new FormControl()
+    });
+  }
+
+  public editHandler({ sender, rowIndex, dataItem }) {
+    this.formGroup = new FormGroup({
+      'id': new FormControl(dataItem.id),
+      'nombre': new FormControl(dataItem.denominacion),
+    });
+    this.editedRowIndex = rowIndex;
+
+    sender.editRow(rowIndex, this.formGroup);
+    this.refreshData();
+  }
+
+  public addHandler({ sender }): void {
+    this.closeEditor(sender);
+    this.formGroup = sender.addRow(this.createFormGroup(new PuestoTipo()));
+    sender.addRow(this.formGroup);
+    this.refreshData();
+  }
+
+  public cancelHandler({ sender, rowIndex }) {
+    sender.closeRow(rowIndex)
+  }
+
+  public saveHandler({ sender, rowIndex, formGroup, isNew }) {
+    const puesto: PuestoTipo = formGroup.value;
+
+    if (isNew) {
+      this.puestosService.create(puesto).subscribe();
+    } else {
+      this.puestosService.update(puesto).subscribe();
+    }
+    sender.closeRow(rowIndex);
+    this.refreshData();
+  }
+
+  public removeHandler({ dataItem }) {
+    this.puestosService.delete(dataItem).subscribe();
+    this.refreshData();
+  }
+
+  private closeEditor(grid, rowIndex = this.editedRowIndex): void {
+    grid.closeRow(rowIndex);
+    this.editedRowIndex = undefined;
+    this.formGroup = undefined;
+  }
 
 
 }

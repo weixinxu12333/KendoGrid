@@ -11,12 +11,15 @@ import { GridMenuColumnComponent } from './shared/components/grid/grid-menu-colu
 import { MatSliderModule } from '@angular/material/slider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu';
+import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    GridMenuColumnComponent
+    GridMenuColumnComponent,
+    ReactiveFormsComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FormsModule, GridModule,
@@ -31,7 +34,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSliderModule,
     MatIconModule,
     MatTooltipModule,
-    ExcelModule
+    ExcelModule,
+    MatMenuModule
   ],
   exports: [
     GridMenuColumnComponent

@@ -6,7 +6,6 @@
 
 
 <div>
-  <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
   <!-- <kendo-grid
     [kendoGridBinding]="gridView" 
     kendoGridSelectBy="puestoId"
@@ -17,20 +16,71 @@
    (pageChange)="pageChange($event)" -->
   <kendo-grid [data]="gridData" [loading]="loading" [height]="800" [reorderable]="true" [sort]="state.sort" (dataStateChange)="dataStateChange($event)" [sortable]="{allowUnsort: true,
     mode:'multiple'
-  }" [pageable]="true" [pageSize]="state.take" [skip]="state.skip" [filter]="state.filter" filterable="menu" [resizable]="true">
+  }" [pageable]="true" [pageSize]="state.take" [skip]="state.skip" [filter]="state.filter" filterable="menu" [resizable]="true" (edit)="editHandler($event)" (cancel)="cancelHandler($event)" (save)="saveHandler($event)" (remove)="removeHandler($event)" (add)="addHandler($event)">
 
-    <ng-template kendoGridToolbarTemplate>
+    <!-- <ng-template kendoGridToolbarTemplate>
       <input placeholder=" Búsqueda por todas las columnas..." kendoTextBox (input)="onFilter($event.target.value)" />
       <button type="button" kendoGridExcelCommand icon="file-excel">
         Export to Excel
       </button>
+    </ng-template> -->
+
+    <ng-template kendoGridToolbarTemplate>
+
+      <input placeholder=" Búsqueda por todas las columnas..." kendoTextBox (input)="onFilter($event.target.value)" />
+      <button type="button" kendoGridExcelCommand icon="file-excel">
+        Export to Excel
+      </button>
+
+      <button [matMenuTriggerFor]="menuAdd" matTooltip="{{ 'Nuevo puesto' }}">
+        <mat-icon>add_circle</mat-icon>
+      </button>
+
+      <mat-menu #menuAdd="matMenu">
+        <button mat-menu-item kendoGridAddCommand [disabled]="customFieldRequired">
+          <mat-icon>playlist_add</mat-icon>
+          <span>Nuevo desde lista</span>
+        </button>
+
+        <button mat-menu-item>
+          <mat-icon>add</mat-icon>
+          <span>Nuevo desde ficha(no desarrollado)</span>
+        </button>
+      </mat-menu>
+
     </ng-template>
 
     <kendo-grid-column field="puestoId" title="Cód." width="100" [headerStyle]="{'font-weight' : 'bold'}">
+      <!-- header -->
       <ng-template kendoGridHeaderTemplate let-column>
         <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Código de puesto">
         </app-grid-menu-column>
       </ng-template>
+
+      <!-- Cuerpo -->
+      <ng-template kendoGridCellTemplate let-isNew="isNew" let-dataItem="dataItem" let-rowIndex="rowIndex" let-columnIndex="columnIndex">
+
+        <div id="gc-menu-row" class="gc-menu-row bg-primary-light" *ngIf="!isNew">
+          <button mat-icon-button color="primary">
+            <i class="fas fa-users fa-lg"></i>
+          </button>
+
+          <button mat-icon-button color="primary" (click)="addHandler()" [disabled]="customFieldRequired" kendoGridEditCommand tabindex="-1" matTooltip="{{ 'Editar' }}">
+            <i class="fas fa-pen fa-lg"></i>
+          </button>
+        </div>
+
+        <div class="gc-icons-actions" *ngIf="isInEditingMode || isNew">
+          <button mat-icon-button color="primary" (click)="saveClick()" tabindex="-1" matTooltip="{{ 'Guardar' }}" fxShow="false" fxShow.gt-xs>
+            <mat-icon>done</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" (click)="cancelHandler()" tabindex="-1" matTooltip="{{ 'Cancelar' }}" fxShow="false" fxShow.gt-xs>
+            <i class="fas fa-undo fa-lg primary-color"></i>
+          </button>
+        </div>
+
+      </ng-template>
+
     </kendo-grid-column>
 
     <kendo-grid-column field="puestoIdOficial" title="Código oficial" width="150" [headerStyle]="{'font-weight' : 'bold'}">
