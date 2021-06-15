@@ -1,89 +1,9 @@
 {
   "posts": [
     {
-      "adscripcion": {
-        "adscripcionId": "A4",
-        "id": 4,
-        "nombre": "Otras Administraciones",
-        "rowVersion": "8D77722A3484370"
-      },
-      "camino": null,
-      "catalogo": {
-        "id": 8,
-        "catalogoId": "0008",
-        "nombre": "RPT No individualizado",
-        "rowVersion": "8D809C188516920",
-        "activo": true
-      },
-      "clase": null,
-      "complementoDestino": null,
-      "complementoDestinoId": null,
-      "complementoDestinoImporte": null,
-      "complementoEspecifico": null,
-      "complementoEspecificoId": null,
-      "complementoEspecificoImporte": null,
-      "cuerpo": null,
-      "disponibilidadPlena": false,
-      "dotaciones": 1,
-      "ocupantes": 1,
-      "vacantes": 0,
-      "dotado": false,
-      "empresaId": "99113",
-      "escala": {
-        "id": 21,
-        "escalaId": "05",
-        "nombre": "Eventual",
-        "abreviacion": "EV",
-        "rowVersion": "8CF105DCC06CD10"
-      },
-      "fechaAlta": null,
-      "fechaVigenciaFin": null,
-      "fechaVigenciaInicio": "2019-01-01T00:00:00+01:00",
-      "formaProvision": null,
-      "grupo1Id": "01",
-      "grupo1Importe": 0,
-      "grupo2Id": "3 ",
       "id": 14874,
-      "idUnidadOrganizativa": null,
-      "motivo": null,
-      "nombre": "Chofer",
-      "nombreCompleto": "Chofer [00008]",
-      "personaDeConfianza": false,
-      "puesto": {
-        "id": 11129,
-        "puestoId": "00008",
-        "nombre": "Chofer",
-        "empresaId": "99113",
-        "fechaAlta": "2019-01-01T00:00:00+01:00",
-        "fechaBaja": null,
-        "rowVersion": "8D8FD56BFD139A0",
-        "unidadesOrganizativas": [],
-        "motivoAmortizacion": null
-      },
-      "puestoTipo": {
-        "id": 489,
-        "puestoTipoId": "88876",
-        "nombre": "Chofer",
-        "rowVersion": "8D88BA0423FC970"
-      },
-      "puestoId": "00008",
-      "puestoIdOficial": null,
-      "puestoTipoId": "88876",
-      "reservadoNacionales": false,
-      "retribucion": null,
-      "retribucionAnualGrupo": null,
-      "retribucionExtraDiciembreGrupo": null,
-      "retribucionExtraJunioGrupo": null,
-      "rowVersion": "8D8FA852530BA70",
-      "rutaUnidadOrganizativa": null,
-      "singularizado": false,
-      "subEscala": null,
-      "tipoVinculo": null,
-      "unidadOrganizativaId": null,
-      "versionId": 1,
-      "unidadOrganizativa": null,
-      "customFieldValue": [],
-      "state": 0
+      "puestoIdOficial": "00008",
+      "nombre": "Choferz"
     },
     {
       "adscripcion": {
@@ -78205,6 +78125,300 @@
       "customFieldValue": [],
       "state": 0,
       "id": 16043
+    },
+    {
+      "id": 16044,
+      "puestoId": "aa",
+      "nombre": "aaa"
+    },
+    {
+      "adscripcion": null,
+      "puesto": {
+        "nombre": "miaumiaumiau"
+      },
+      "puestoId": "0000079",
+      "id": 16045
+    },
+    {
+      "id": 16046,
+      "puestoId": "000000000000",
+      "nombre": "000000000000",
+      "puesto": {
+        "nombre": "000000000001"
+      }
+    },
+    {
+      "id": 16047,
+      "puestoId": "qqqqqqqqqqq",
+      "nombre": "qqqqqqqqqqq",
+      "puesto": {
+        "nombre": "aaaaaaaaaaaaa"
+      }
+    },
+    {
+      "id": 16048,
+      "puestoId": null,
+      "nombre": "aasasas"
+    },
+    {
+      "id": 16049,
+      "puestoId": null,
+      "nombre": "mmmmmm"
+    },
+    {
+      "id": 16050,
+      "puestoId": null,
+      "nombre": "rrrrrrr"
+    },
+    {
+      "id": 16051,
+      "puestoId": null,
+      "nombre": "r"
+    },
+    {
+      "id": 16052,
+      "puestoId": null,
+      "nombre": "a"
+    },
+    {
+      "id": 16053,
+      "puestoId": null,
+      "nombre": "aaa"
+    },
+    {
+      "id": 16054,
+      "puestoId": null,
+      "nombre": "ggg"
+    },
+    {
+      "id": 16055,
+      "puestoId": null,
+      "nombre": "dd"
+    },
+    {
+      "id": 16056,
+      "puestoId": null,
+      "nombre": "qqq"
+    },
+    {
+      "id": 16057,
+      "puestoId": null,
+      "nombre": "www"
+    },
+    {
+      "id": 16058,
+      "puestoId": null,
+      "nombre": "qqqqqqqqqqqqq"
+    },
+    {
+      "id": 16059,
+      "puestoIdOficial": "QW",
+      "nombre": "QW"
+    },
+    {
+      "id": 16060,
+      "puestoIdOficial": "A",
+      "nombre": "A"
+    },
+    {
+      "id": 16061,
+      "puestoIdOficial": "AA",
+      "nombre": "AA"
+    },
+    {
+      "id": 16062,
+      "puestoIdOficial": "zzz",
+      "nombre": "zzzzzzz"
+    },
+    {
+      "id": 16063,
+      "puestoIdOficial": "aa",
+      "nombre": "aaa"
+    },
+    {
+      "id": 16064,
+      "puestoIdOficial": "ggggg",
+      "nombre": "gggg"
+    },
+    {
+      "id": 16065,
+      "puestoIdOficial": "ssssss",
+      "nombre": "sssss"
+    },
+    {
+      "id": 16066,
+      "puestoIdOficial": "dd",
+      "nombre": "dddd"
+    },
+    {
+      "id": 16067,
+      "puestoIdOficial": "sssss",
+      "nombre": "ssss"
+    },
+    {
+      "id": 16068,
+      "puestoIdOficial": "tt",
+      "nombre": "tt"
+    },
+    {
+      "id": 16069,
+      "puestoIdOficial": "aaaaaaaaaabc",
+      "nombre": "aaaaaaaaaaaaaaaaabc"
+    },
+    {
+      "id": 16070,
+      "puestoIdOficial": "ghgh",
+      "nombre": "ghgh"
+    },
+    {
+      "id": 16071,
+      "puestoIdOficial": "sdadasdad",
+      "nombre": "aa"
+    },
+    {
+      "id": 16072,
+      "puestoIdOficial": "mishi",
+      "nombre": "mishimishi"
+    },
+    {
+      "id": 16073,
+      "puestoIdOficial": "ee",
+      "nombre": "ee"
+    },
+    {
+      "id": 16074,
+      "puestoIdOficial": "we",
+      "nombre": "we"
+    },
+    {
+      "id": 16075,
+      "puestoIdOficial": "33",
+      "nombre": "33"
+    },
+    {
+      "id": 16076,
+      "puestoIdOficial": "q",
+      "nombre": "q"
+    },
+    {
+      "id": 16077,
+      "puestoIdOficial": "ayg",
+      "nombre": "ayg"
+    },
+    {
+      "id": 16078,
+      "puestoIdOficial": "tyty",
+      "nombre": "tyty"
+    },
+    {
+      "id": 16079,
+      "puestoIdOficial": "asd",
+      "nombre": "aer"
+    },
+    {
+      "id": 16080,
+      "puestoIdOficial": "FF",
+      "nombre": "FF"
+    },
+    {
+      "id": 16081,
+      "puestoIdOficial": "aaa",
+      "nombre": "aaa"
+    },
+    {
+      "id": 16082,
+      "puestoIdOficial": "fdfdf",
+      "nombre": "dfdfd"
+    },
+    {
+      "id": 16083,
+      "puestoIdOficial": "p",
+      "nombre": "p"
+    },
+    {
+      "id": 16084,
+      "puestoIdOficial": "o",
+      "nombre": "o"
+    },
+    {
+      "id": 16085,
+      "puestoIdOficial": "555",
+      "nombre": "555"
+    },
+    {
+      "id": 16086,
+      "puestoIdOficial": "6",
+      "nombre": "6"
+    },
+    {
+      "id": 16087,
+      "puestoIdOficial": "77",
+      "nombre": "77"
+    },
+    {
+      "id": 16088,
+      "puestoIdOficial": "er3",
+      "nombre": "34"
+    },
+    {
+      "id": 16089,
+      "puestoIdOficial": "sdsd",
+      "nombre": "sdsd"
+    },
+    {
+      "id": 16090,
+      "puestoIdOficial": "asdad",
+      "nombre": "sadads"
+    },
+    {
+      "id": 16091,
+      "puestoIdOficial": "1111",
+      "nombre": "1111"
+    },
+    {
+      "id": 16092,
+      "puestoIdOficial": "33",
+      "nombre": "33"
+    },
+    {
+      "id": 16093,
+      "puestoIdOficial": "as",
+      "nombre": "asass"
+    },
+    {
+      "id": 16094,
+      "puestoIdOficial": "dfsdf",
+      "nombre": "sdfsf"
+    },
+    {
+      "id": 16095,
+      "puestoIdOficial": "ee",
+      "nombre": "ee"
+    },
+    {
+      "id": 16096,
+      "puestoIdOficial": "rr",
+      "nombre": "rr"
+    },
+    {
+      "id": 16097,
+      "puestoIdOficial": "77",
+      "nombre": "7777"
+    },
+    {
+      "id": 16098,
+      "puestoIdOficial": "qwqw",
+      "nombre": "qwqw"
+    },
+    {
+      "id": 16099,
+      "puestoIdOficial": "44",
+      "nombre": "44"
+    },
+    {
+      "id": 16100,
+      "puestoIdOficial": "www",
+      "nombre": "qwqw"
     }
   ]
 }

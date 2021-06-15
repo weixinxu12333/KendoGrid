@@ -50,14 +50,26 @@
 
     </ng-template>
 
-    <kendo-grid-column field="puestoId" title="Cód." width="100" [headerStyle]="{'font-weight' : 'bold'}">
-      <!-- header -->
+    <kendo-grid-column field="puestoIdOficial" title="Código oficial" width="150" [headerStyle]="{'font-weight' : 'bold'}">
+      <ng-template kendoGridHeaderTemplate let-column>
+        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Código oficial">
+        </app-grid-menu-column>
+      </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column field="nombre" title="Denominación" width="200" [headerStyle]="{'font-weight' : 'bold'}">
+      <ng-template kendoGridHeaderTemplate let-column>
+        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Denominación">
+        </app-grid-menu-column>
+      </ng-template>
+    </kendo-grid-column>
+
+    <!-- <kendo-grid-column field="puestoId" title="Cód." width="100" [headerStyle]="{'font-weight' : 'bold'}">
       <ng-template kendoGridHeaderTemplate let-column>
         <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Código de puesto">
         </app-grid-menu-column>
       </ng-template>
 
-      <!-- Cuerpo -->
       <ng-template kendoGridCellTemplate let-isNew="isNew" let-dataItem="dataItem" let-rowIndex="rowIndex" let-columnIndex="columnIndex">
 
         <div id="gc-menu-row" class="gc-menu-row bg-primary-light" *ngIf="!isNew">
@@ -80,221 +92,17 @@
         </div>
 
       </ng-template>
+    </kendo-grid-column> -->
 
-    </kendo-grid-column>
+    <kendo-grid-command-column title="command" width="220">
+      <ng-template kendoGridCellTemplate let-isNew="isNew">
+        <button kendoGridEditCommand [primary]="true">Edit</button>
+        <button kendoGridRemoveCommand>Remove</button>
+        <button kendoGridSaveCommand [disabled]="formGroup?.invalid">{{ isNew ? 'Add' : 'Update' }}</button>
+        <button kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
+      </ng-template>
+    </kendo-grid-command-column>
 
-    <kendo-grid-column field="puestoIdOficial" title="Código oficial" width="150" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Código oficial">
-        </app-grid-menu-column>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="puestoTipoId" title="Puesto tipo" width="300">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" [fontSet]="'icon-'" [fontIcon]="'icon-tag-line'" matTooltip="Puesto tipo">
-        </app-grid-menu-column>
-      </ng-template>
-
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <div class="gc-puesto-tipo-row">
-          <!-- <mat-icon style="display: inline-block;width: 15px;" [ngStyle]="{'color': (dataItem.puestoTipoId != null) ? 'yellow' : 'gray'}" matTooltip="{{dataItem.puestoTipo?.nombre}}">
-            local_offer
-          </mat-icon> -->
-          <mat-icon style="display: inline-block;width: 15px;" [class.gc-tag-grey]=" (!dataItem.puestoTipoId)" [class.gc-tag-yellow]="(dataItem.puestoTipoId)" matTooltip=" {{dataItem.puestoTipo?.nombre}}">
-            local_offer</mat-icon>
-          <span class="gc-ptipo-desc" [style.backgroundColor]="changeColorCells(dataItem.puestoTipo?.nombre)">
-            &nbsp; {{dataItem.puestoTipo?.nombre}}
-          </span>
-        </div>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="nombre" title="Denominación" width="200" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Denominación">
-        </app-grid-menu-column>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="tipoVinculo.nombre" title="TP" width="100" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Tipo de personal">
-        </app-grid-menu-column>
-      </ng-template>
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <span class="whole-cell" matTooltip="{{ dataItem.tipoVinculo?.nombre }}" [style.backgroundColor]="changeColorCells(dataItem.tipoVinculoId)">
-          <div *ngIf="dataItem.tipoVinculo" class="gc-content-type" [class.gc-content-type-green]="dataItem.tipoVinculo.asimilado == 'F'" [class.gc-content-type-darkmagenta]="dataItem.tipoVinculo.asimilado == 'L'">
-            {{ dataItem.tipoVinculo.tipoVinculoId }}
-          </div>
-        </span>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="catalogo.nombre" title="Catálogo" width="200" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Catálogo">
-        </app-grid-menu-column>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="adscripcion.nombre" title="Adscripción administración" width="220" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Adscripción a la administración">
-        </app-grid-menu-column>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="grupo1Id" title="G1" width="70" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Grupo 1">
-        </app-grid-menu-column>
-      </ng-template>
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <div *ngIf="dataItem.grupo1Id" class="gc-content-type gc-content-grupo" matTooltip="{{ dataItem.grupo1Id }}">
-          <span class="whole-cell gc-grupo-text" [style.backgroundColor]="changeColorCells(dataItem.grupo1Id)"> {{ dataItem.grupo1Id }}</span>
-        </div>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="grupo2Id" title="G2" width="70" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Grupo 2">
-        </app-grid-menu-column>
-      </ng-template>
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <div *ngIf="dataItem.grupo2Id" class="gc-content-type gc-content-grupo" matTooltip="{{ dataItem.grupo2Id }}">
-          <span class="whole-cell gc-grupo-text" [style.backgroundColor]="changeColorCells(dataItem.grupo2Id)"> {{ dataItem.grupo2Id }}</span>
-        </div>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="escala.nombre" title="Escala" width="100" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Escala">
-        </app-grid-menu-column>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="cuerpo.nombre" title="Cuerpo" width="120" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Cuerpo">
-        </app-grid-menu-column>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="formaProvision.nombre" title="Forma provisión" width="150" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Forma provisión">
-        </app-grid-menu-column>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="retribucion" title="Grupo (€)" width="120" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Importe anual del grupo 1">
-        </app-grid-menu-column>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="complementoDestinoId" title="ND" width="100" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Nivel complemento destino">
-        </app-grid-menu-column>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="complementoDestinoImporte" title="ND (€)" width="120" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Importe anual del complemento destino">
-        </app-grid-menu-column>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="complementoEspecificoId" title="CE" width="100" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Código del complemento específico">
-        </app-grid-menu-column>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="complementoEspecificoImporte" title="CE (€)" width="120" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Importe anual del complemento específico">
-        </app-grid-menu-column>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="dotaciones" title="Dot" width="80" filter="numeric" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Dotaciones">
-        </app-grid-menu-column>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="ocupantes" title="Ocupantes" width="120" filter="numeric" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Número de ocupantes">
-        </app-grid-menu-column>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="vacantes" title="Vacantes" width="120" filter="numeric" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Número de dotaciones - Número de ocupantes">
-        </app-grid-menu-column>
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="dotado" title="Dotado" width="100" filter="boolean" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Dotado económicamente">
-        </app-grid-menu-column>
-      </ng-template>
-      <ng-template kendoGridCellTemplate let-dataItem="dataItem">
-        <input type="checkbox" [checked]="dataItem.dotado" disabled />
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="singularizado" title="PS" width="80" filter="boolean" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Puesto singularizado">
-        </app-grid-menu-column>
-      </ng-template>
-      <ng-template kendoGridCellTemplate let-dataItem="dataItem">
-        <input type="checkbox" [checked]="dataItem.singularizado" disabled />
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="reservadoNacionales" title="RN" width="80" filter="boolean" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Reservado nacionales">
-        </app-grid-menu-column>
-      </ng-template>
-      <ng-template kendoGridCellTemplate let-dataItem="dataItem">
-        <input type="checkbox" [checked]="dataItem.reservadoNacionales" disabled />
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="disponibilidadPlena" title="PD" width="80" filter="boolean" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Plena disponibilidad">
-        </app-grid-menu-column>
-      </ng-template>
-      <ng-template kendoGridCellTemplate let-dataItem="dataItem">
-        <input type="checkbox" [checked]="dataItem.disponibilidadPlena" disabled />
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="personaDeConfianza" title="PC" width="80" filter="boolean" [headerStyle]="{'font-weight' : 'bold'}">
-      <ng-template kendoGridHeaderTemplate let-column>
-        <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Persona de confianza">
-        </app-grid-menu-column>
-      </ng-template>
-      <ng-template kendoGridCellTemplate let-dataItem="dataItem">
-        <input type="checkbox" [checked]="dataItem.personaDeConfianza" disabled />
-      </ng-template>
-    </kendo-grid-column>
     <kendo-grid-excel fileName="Products.xlsx" [fetchData]="allData"></kendo-grid-excel>
   </kendo-grid>
 </div>

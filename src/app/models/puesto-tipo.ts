@@ -9,7 +9,8 @@ import { FormaProvision } from './forma-provision';
 import { SubEscala } from './subescala';
 import { TipoVinculo } from './tipo-vinculo';
 
-export class PuestoTipo extends BaseDto {
+// export class PuestoTipo extends BaseDto {
+export class PuestoTipo {
     // public adscripcion: Adscripcion;
     // public camino: string;
     // public catalogo: Catalogo;
@@ -43,7 +44,7 @@ export class PuestoTipo extends BaseDto {
 
     // public puestoId: string;
     // public puestoIdOficial: string;
-    public id: number;
-    public codigo: number;
-    public denominacion: string;
+    public id: string;
+    public puestoIdOficial: string;
+    public nombre: string;
 }
