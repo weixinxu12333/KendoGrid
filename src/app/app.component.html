@@ -50,9 +50,25 @@
 
     </ng-template>
 
+    <!-- Tabla de una sola columna cuando media=xs (max-width: 576px) -->
+    <kendo-grid-column media="xs" title="Items">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div class="mobile-row">
+          <h4>{{dataItem.nombre}}</h4>
+          <button mat-icon-button color="primary" kendoGridEditCommand [primary]="true" matTooltip="Editar">
+            <i class="fas fa-pen fa-lg"></i>
+          </button>
+          <dl>
+            <dt>Código</dt>
+            <dd>{{ dataItem.puestoIdOficial }}</dd>
+          </dl>
+        </div>
+      </ng-template>
+    </kendo-grid-column>
 
 
-    <kendo-grid-command-column title="command" width="220">
+    <!-- Resto de columnas tienen que ir con media=sm (min-width: 576px) -->
+    <kendo-grid-command-column media="sm" title="command" width="220">
       <ng-template kendoGridCellTemplate let-isNew="isNew">
 
         <!-- Si no es nuevo, y no estamos en modo de editar -->
@@ -107,14 +123,14 @@
       </ng-template>
     </kendo-grid-command-column> -->
 
-    <kendo-grid-column field="puestoIdOficial" title="Código oficial" width="150" [headerStyle]="{'font-weight' : 'bold'}">
+    <kendo-grid-column media="sm" field="puestoIdOficial" title="Código oficial" width="150" [headerStyle]="{'font-weight' : 'bold'}">
       <ng-template kendoGridHeaderTemplate let-column>
         <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Código oficial">
         </app-grid-menu-column>
       </ng-template>
     </kendo-grid-column>
 
-    <kendo-grid-column field="nombre" title="Denominación" width="200" [headerStyle]="{'font-weight' : 'bold'}">
+    <kendo-grid-column media="sm" field="nombre" title="Denominación" width="200" [headerStyle]="{'font-weight' : 'bold'}">
       <ng-template kendoGridHeaderTemplate let-column>
         <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Denominación">
         </app-grid-menu-column>
@@ -155,4 +171,6 @@
 
     <kendo-grid-excel fileName="Products.xlsx" [fetchData]="allData"></kendo-grid-excel>
   </kendo-grid>
+  <!-- Dialog para móviles -->
+  <app-edit-form *ngIf="mobileMode" media="xs" [model]="editDataItem" [isNew]="isNew" (save)="save($event, isNew)" (cancel)="cancelHandler($event)"></app-edit-form>
 </div>

@@ -3,25 +3,29 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
+import { DialogModule, DialogsModule } from '@progress/kendo-angular-dialog';
 import { GridModule, ExcelModule } from '@progress/kendo-angular-grid';
+import { InputsModule } from '@progress/kendo-angular-inputs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { GridMenuColumnComponent } from './shared/components/grid/grid-menu-column/grid-menu-column.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
+import { EditFormComponent } from './edit-form/edit-form.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    GridMenuColumnComponent
+    GridMenuColumnComponent,
+    EditFormComponent
   ],
   imports: [
-    BrowserModule, BrowserAnimationsModule, FormsModule, GridModule,
+    BrowserModule, BrowserAnimationsModule, DialogModule, FormsModule, ReactiveFormsModule, GridModule, InputsModule,
     HttpClientModule,
     OAuthModule.forRoot({
       resourceServer: {
@@ -34,7 +38,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatIconModule,
     MatTooltipModule,
     ExcelModule,
-    MatMenuModule
+    MatMenuModule,
+    DialogsModule
   ],
   exports: [
     GridMenuColumnComponent

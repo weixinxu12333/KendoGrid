@@ -1,0 +1,26 @@
+<kendo-dialog *ngIf="active" [width]="300" [height]="450" (close)="closeForm()">
+    <kendo-dialog-titlebar>{{isNew ? 'Añadir puesto' : 'Editar puesto'}}</kendo-dialog-titlebar>
+    <form novalidate class="k-form" [formGroup]="editForm">
+        <kendo-formfield>
+            <kendo-label [for]="puestoIdOficial" text="Id Puesto Oficial"></kendo-label>
+            <!--<kendo-numerictextbox formControlName="puestoIdOficial" kendoTextBox #puestoIdOficial required></kendo-numerictextbox>-->
+            <input formControlName="puestoIdOficial" kendoTextBox #puestoIdOficial required />
+            <kendo-formhint>Escribe el id de puesto oficial</kendo-formhint>
+            <kendo-formerror>Error: El id de puesto oficial es necesario</kendo-formerror>
+        </kendo-formfield>
+
+        <kendo-formfield>
+            <kendo-label [for]="nombre" text="Nombre"></kendo-label>
+            <input formControlName="nombre" kendoTextBox #nombre required />
+            <kendo-formhint>Escribe el nombre</kendo-formhint>
+            <kendo-formerror>Error: El nombre es necesario</kendo-formerror>
+        </kendo-formfield>
+
+    </form>
+    <kendo-dialog-actions>
+        <button class="k-button" (click)="onCancel($event)">Cancel</button>
+        <button class="k-button k-primary" [disabled]="!editForm.valid" (click)="onSave($event)">
+            Save
+        </button>
+    </kendo-dialog-actions>
+</kendo-dialog>

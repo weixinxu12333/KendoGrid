@@ -1,8 +1,8 @@
-import { Component, Inject, ViewChild } from '@angular/core';
-import { DataBindingDirective, DataStateChangeEvent, GridComponent, PageChangeEvent } from '@progress/kendo-angular-grid';
-import { filter, map } from 'rxjs/operators';
+import { Component, Renderer2, ViewChild } from '@angular/core';
+import { DataBindingDirective, GridComponent, PageChangeEvent } from '@progress/kendo-angular-grid';
+import { filter } from 'rxjs/operators';
 import { GridDataResult } from '@progress/kendo-angular-grid';
-import { SortDescriptor, orderBy, process, State } from '@progress/kendo-data-query';
+import { SortDescriptor, process, State } from '@progress/kendo-data-query';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { authCodeFlowConfig } from './auth.config';
 import { PuestosService } from './services/puestosService';
@@ -10,7 +10,6 @@ import { PuestoTipo } from './models/puesto-tipo';
 import { SafeStyle, DomSanitizer } from '@angular/platform-browser';
 import { ExcelExportData } from '@progress/kendo-angular-excel-export';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +22,9 @@ export class AppComponent {
 
   @ViewChild(DataBindingDirective)
   dataBinding: DataBindingDirective;
+
+  public editDataItem: PuestoTipo;
+  public isNew: boolean;
 
   // Carregant dades
   public loading = true;
@@ -64,13 +66,15 @@ export class AppComponent {
 
   // public isTouchScreen: boolean;
 
+  //Mobile
+  public mobileMode = false;
 
   constructor(
 
     private oauthService: OAuthService,
     private puestosService: PuestosService,
     private sanitizer: DomSanitizer,
-    private formBuilder: FormBuilder
+    private renderer: Renderer2,
   ) {
     this.oauthService.configure(authCodeFlowConfig);
     this.oauthService.loadDiscoveryDocumentAndLogin().then(_ => this.initLoad());
@@ -84,6 +88,15 @@ export class AppComponent {
     this.allData = this.allData.bind(this);
     // this.createFormGroup = this.createFormGroup.bind(this);
 
+    renderer.listen('window', 'resize', () => {
+      this.updateMobileMode();
+    });
+    this.updateMobileMode();
+
+  }
+
+  private updateMobileMode() {
+    this.mobileMode = window.matchMedia("(max-width: 576px)").matches;
   }
 
   private initLoad(): void {
@@ -205,7 +218,7 @@ export class AppComponent {
 
     // sender.editRow(rowIndex, this.formGroup);
     // this.refreshData();
-
+    this.editDataItem = dataItem;
     this.closeEditor(sender);
 
     this.editMode = true;
@@ -221,11 +234,18 @@ export class AppComponent {
     sender.editRow(rowIndex, this.formGroup);
   }
 
-  public cancelHandler({ sender, rowIndex }): void {
-    this.closeEditor(sender, rowIndex);
+  public cancelHandler({ sender = undefined, rowIndex = undefined } = {}): void {
+    if (sender !== undefined)
+      this.closeEditor(sender, rowIndex);
     this.editMode = false;
+    this.editDataItem = undefined;
   }
+  public save(puesto: PuestoTipo, isNew: boolean): void {
 
+    this.puestosService.save(puesto, isNew);
+    this.editDataItem = undefined;
+    this.initLoad();
+  }
   public saveHandler({ sender, rowIndex, formGroup, isNew }): void {
     // const puesto: PuestoTipo = formGroup.value;
 
@@ -236,16 +256,14 @@ export class AppComponent {
     // }
     // sender.closeRow(rowIndex);
     // this.refreshData();
+    const puesto = formGroup.value;
 
-    const puesto: PuestoTipo = formGroup.value;
-
-    this.puestosService.save(puesto, isNew);
-
-    sender.closeRow(rowIndex);
+    sender?.closeRow(rowIndex);
 
     this.editMode = false;
 
-    this.initLoad();
+
+    this.save(puesto, isNew);
   }
 
   public removeHandler({ dataItem }): void {
