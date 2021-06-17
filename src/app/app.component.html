@@ -50,6 +50,63 @@
 
     </ng-template>
 
+
+
+    <kendo-grid-command-column title="command" width="220">
+      <ng-template kendoGridCellTemplate let-isNew="isNew">
+
+        <!-- Si no es nuevo, y no estamos en modo de editar -->
+        <div *ngIf="!isNew && !editMode">
+          <button mat-icon-button color="primary" matTooltip="Trabajadores (no desarrollado)">
+            <i class="fas fa-users fa-lg"></i>
+          </button>
+
+          <button mat-icon-button color="primary" kendoGridEditCommand [primary]="true" matTooltip="Editar">
+            <i class="fas fa-pen fa-lg"></i>
+          </button>
+
+          <button mat-icon-button color="primary" kendoGridRemoveCommand matTooltip="{{ isNew ? 'soy nuevo' : 'no soy nuevo' }}">
+            <i class="fas fa-trash fa-lg"></i>
+          </button>
+
+        </div>
+
+        <!-- Si no es nuevo y estamos editando -->
+        <div *ngIf="!isNew && editMode || isNew && editMode">
+
+          <button mat-icon-button color="primary" kendoGridSaveCommand [disabled]="formGroup?.invalid" matTooltip="{{ isNew ? 'Agregar' : 'Guardar' }}">
+            <i class="fas fa-check fa-lg"></i>
+          </button>
+
+          <button mat-icon-button color="primary" kendoGridCancelCommand matTooltip="{{ isNew ? 'Discard changes' : 'Cancel' }}">
+            <i class="fas fa-undo fa-lg"></i>
+          </button>
+
+        </div>
+
+      </ng-template>
+    </kendo-grid-command-column>
+
+    <!-- <kendo-grid-command-column title="command" width="220">
+      <ng-template kendoGridCellTemplate let-isNew="isNew">
+        <button kendoGridEditCommand [primary]="true">Edit</button>
+        <button kendoGridRemoveCommand>Remove</button>
+         <button kendoGridSaveCommand [disabled]="formGroup?.invalid">{{ isNew ? 'Add' : 'Update' }}</button> 
+
+        <div *ngIf="!isNew">
+          <button mat-icon-button color="primary">
+            <i class="fas fa-users fa-lg"></i>
+          </button>
+
+          <button kendoGridSaveCommand [disabled]="formGroup?.invalid" mat-icon-button color="primary">
+            <i class="fas fa-pen fa-lg"></i>
+          </button>
+        </div>
+
+        <button kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
+      </ng-template>
+    </kendo-grid-command-column> -->
+
     <kendo-grid-column field="puestoIdOficial" title="Código oficial" width="150" [headerStyle]="{'font-weight' : 'bold'}">
       <ng-template kendoGridHeaderTemplate let-column>
         <app-grid-menu-column [columnAlign]="'left'" [column]="column" [gridCurrentState]="state" matTooltip="Código oficial">
@@ -94,14 +151,7 @@
       </ng-template>
     </kendo-grid-column> -->
 
-    <kendo-grid-command-column title="command" width="220">
-      <ng-template kendoGridCellTemplate let-isNew="isNew">
-        <button kendoGridEditCommand [primary]="true">Edit</button>
-        <button kendoGridRemoveCommand>Remove</button>
-        <button kendoGridSaveCommand [disabled]="formGroup?.invalid">{{ isNew ? 'Add' : 'Update' }}</button>
-        <button kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
-      </ng-template>
-    </kendo-grid-command-column>
+
 
     <kendo-grid-excel fileName="Products.xlsx" [fetchData]="allData"></kendo-grid-excel>
   </kendo-grid>

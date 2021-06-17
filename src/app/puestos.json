@@ -2,7 +2,7 @@
   "posts": [
     {
       "id": 14874,
-      "puestoIdOficial": "00008",
+      "puestoIdOficial": null,
       "nombre": "Choferz"
     },
     {
@@ -78402,23 +78402,18 @@
     },
     {
       "id": 16097,
-      "puestoIdOficial": "77",
-      "nombre": "7777"
+      "puestoIdOficial": "asasasa",
+      "nombre": "7777aaa"
     },
     {
       "id": 16098,
-      "puestoIdOficial": "qwqw",
-      "nombre": "qwqw"
+      "puestoIdOficial": "00000000000",
+      "nombre": "000000000"
     },
     {
       "id": 16099,
-      "puestoIdOficial": "44",
-      "nombre": "44"
-    },
-    {
-      "id": 16100,
-      "puestoIdOficial": "www",
-      "nombre": "qwqw"
+      "puestoIdOficial": "11111111",
+      "nombre": "111111111"
     }
   ]
 }

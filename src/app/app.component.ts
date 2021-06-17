@@ -56,6 +56,7 @@ export class AppComponent {
   @ViewChild(GridComponent, { static: true }) private grid: GridComponent;
   public gridCurrentState: State = this.state;
 
+  public editMode = false;
 
   // public get isInEditingMode(): boolean {
   //   return this.editedRowIndex !== undefined || this.isNew;
@@ -182,6 +183,8 @@ export class AppComponent {
     // sender.addRow(this.formGroup);
     // this.refreshData();
 
+    this.editMode = true;
+
     this.closeEditor(sender);
 
     this.formGroup = new FormGroup({
@@ -205,6 +208,8 @@ export class AppComponent {
 
     this.closeEditor(sender);
 
+    this.editMode = true;
+
     this.formGroup = new FormGroup({
       'id': new FormControl(dataItem.id),
       'puestoIdOficial': new FormControl(dataItem.puestoId),
@@ -218,6 +223,7 @@ export class AppComponent {
 
   public cancelHandler({ sender, rowIndex }): void {
     this.closeEditor(sender, rowIndex);
+    this.editMode = false;
   }
 
   public saveHandler({ sender, rowIndex, formGroup, isNew }): void {
@@ -237,10 +243,13 @@ export class AppComponent {
 
     sender.closeRow(rowIndex);
 
+    this.editMode = false;
+
     this.initLoad();
   }
 
   public removeHandler({ dataItem }): void {
+    this.editMode = false;
     this.puestosService.delete(dataItem).subscribe();
 
     this.initLoad();
